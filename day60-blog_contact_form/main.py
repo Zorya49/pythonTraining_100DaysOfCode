@@ -22,13 +22,15 @@ for post in posts_response:
 
 
 def send_mail(data):
+    message = (f"Subject: New message from {data["name"]}!\n\n"
+               f"From: {data["name"]}\n"
+               f"Email: {data["email"]}\n"
+               f"Phone: {data["phone"]}\n"
+               f"Message:\n{data["message"]}")
+    message_encoded = message.encode('utf-8')
     connection.sendmail(from_addr=my_email,
                         to_addrs=my_email,
-                        msg=f"New message from {data["name"]}!\n\n"
-                            f"From: {data["name"]}\n"
-                            f"Email: {data["email"]}\n"
-                            f"Phone: {data["phone"]}\n"
-                            f"Message:\n{data["message"]}")
+                        msg=message_encoded)
 
 
 def handle_exit():
