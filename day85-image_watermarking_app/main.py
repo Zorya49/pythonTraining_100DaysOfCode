@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image
 
 
 def add_watermark():
@@ -77,7 +77,7 @@ output_photo_button.grid(row=2, column=2, padx=5, pady=5)
 watermark_position_label = tk.Label(root, text="Watermark Position:")
 watermark_position_label.grid(row=3, column=0, padx=5, pady=5, sticky="w")
 watermark_position_var = tk.StringVar()
-watermark_position_var.set("bottom right")  # Default value
+# watermark_position_var.set("bottom right")  # Default value
 watermark_position_listbox = tk.Listbox(root, listvariable=watermark_position_var, height=5, exportselection=False)
 watermark_position_listbox.grid(row=3, column=1, padx=5, pady=5)
 watermark_positions = ["bottom left", "bottom right", "top left", "top right", "center"]
