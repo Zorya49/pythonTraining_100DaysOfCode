@@ -147,16 +147,5 @@ def report_closed_by_cafe_id(cafe_id):
         })
 
 
-
-
-# HTTP GET - Read Record
-
-# HTTP POST - Create Record
-
-# HTTP PUT/PATCH - Update Record
-
-# HTTP DELETE - Delete Record
-
-
 if __name__ == '__main__':
     app.run(debug=True)
