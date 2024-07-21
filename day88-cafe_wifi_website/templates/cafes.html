@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Restaurants{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h1>All Cafes</h1>
+
+	  <table class="table table-dark table-striped table-hover">
+        <tr>
+            {% for col in cafes[0] %}
+            <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+
+        {% for row in cafes[1:] %}
+        <tr>
+            {% for cell in row %}
+            {% if loop.index0 == 2 %}
+            <td><a href="{{ cell }}" target="_blank" rel="noopener noreferrer">Maps Link</a></td>
+            {% elif loop.index0 == 3 %}
+            <td> <img src="{{ cell }}" width="200" height="150"> </td>
+            {% else %}
+            <td>{{ cell }}</td>
+            {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+  	  </table>
+
+      <p><a href="{{url_for('home')}}">Return to index page</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
