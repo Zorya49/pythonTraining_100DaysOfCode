@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block title %}{% endblock %}
+{% block content %}
+<div class="jumbotron text-center my-jumbotron">
+    <div class="container">
+        <h1 class="display-4">Translate! 💻</h1>
+        <p class="lead">Insert text to translate, source and destination language - it's that simple</p>
+        <hr class="my-4">
+        {{ render_form(form, novalidate=True) }}
+        <hr class="my-4">
+        <form class="form">
+            <label class="form-label">Destination Text</label>
+            <input class="form-control" id="dest_text" name="dest_text" type="text" value="{{ destination_text }}">
+        </form>
+    </div>
+</div>
+
+{% endblock %}
