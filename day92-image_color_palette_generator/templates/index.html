@@ -4,15 +4,11 @@
 {% block content %}
 <div class="jumbotron text-center my-jumbotron">
     <div class="container">
-        <h1 class="display-4">Translate! 💻</h1>
-        <p class="lead">Insert text to translate, source and destination language - it's that simple</p>
+        <h1 class="display-4"></h1>
+        <p class="lead">Upload your image and extract color palette form image</p>
         <hr class="my-4">
         {{ render_form(form, novalidate=True) }}
         <hr class="my-4">
-        <form class="form">
-            <label class="form-label">Destination Text</label>
-            <input class="form-control" id="dest_text" name="dest_text" type="text" value="{{ destination_text }}">
-        </form>
     </div>
 </div>
 
