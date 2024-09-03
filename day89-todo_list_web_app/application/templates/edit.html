@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Edit Task</h2>
+<form method="POST" action="{{ url_for('main.edit_task', task_id=task.id) }}">
+    <div class="form-group">
+        <label for="task_descr">Task Description</label>
+        <input type="text" class="form-control" id="task_descr" name="task_descr" value="{{ task.description }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Task</button>
+    <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
