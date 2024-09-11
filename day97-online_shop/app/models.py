@@ -30,8 +30,8 @@ class Product(db.Model):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(250), unique=True, nullable=False)
-    description: Mapped[str] = mapped_column(String(5000), unique=False, nullable=True)
-    img_src: Mapped[str] = mapped_column(String(250), unique=False, nullable=True)
+    description: Mapped[str] = mapped_column(String(5000), nullable=False)
+    img_src: Mapped[str] = mapped_column(String(250), nullable=False, default='default.jpg')
     price: Mapped[int] = mapped_column(Integer, nullable=False)
     stock: Mapped[int] = mapped_column(Integer, nullable=False)
 

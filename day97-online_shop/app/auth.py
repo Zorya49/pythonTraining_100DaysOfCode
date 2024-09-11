@@ -44,9 +44,10 @@ def login():
         password = request.form.get("password")
         user = User.query.filter_by(email=email).first()
         if not user or not user.check_password(password):
-            flash('Invalid username or password.')
+            flash('Invalid credentials.', 'danger')
             return redirect(url_for('auth.login'))
         login_user(user)
+        flash('Login successful!', 'success')
         return redirect(url_for('main.product_list'))
     return render_template('login.html')
 
