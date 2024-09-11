@@ -67,19 +67,37 @@ def add_to_cart():
         product = Product.query.where(Product.id == product_id).first()
 
         # Ensure the product exists and stock is sufficient
-        if not product or product.stock < quantity:
-            flash(f"Requested quantity exceeds stock.", 'danger')
+        if not product:
+            flash(f"Product not found.", 'danger')
             return redirect(url_for('main.product_detail', product_id=product_id))
 
-        if 'cart' not in session:
-            session['cart'] = []
+        if 'cart' in session:
+            # Check if the product is already in the cart
+            if not any(d['product_id'] == product_id for d in session['cart']) and product.stock >= quantity:
+                # Add the product with its details to the cart
+                session['cart'].append({
+                    'product_id': product_id,
+                    'product_name': product.name,
+                    'quantity': quantity,
+                    'price': product.price
+                })
+            elif any(d['product_id'] == product_id for d in session['cart']) and product.stock >= quantity:
+                # Update the quantity of the product in the cart
+                for d in session['cart']:
+                    if d['product_id'] == product_id:
+                        d['quantity'] = quantity  # Update the quantity
+            else:
+                flash(f"Requested quantity is higher than current stock.", 'danger')
+                return redirect(url_for('main.product_detail', product_id=product_id))
+        else:
+            # Initialize the cart and add the first product with details
+            session['cart'] = [{
+                'product_id': product_id,
+                'product_name': product.name,
+                'quantity': quantity,
+                'price': product.price
+            }]
 
-        session['cart'].append({
-            'product_id': product_id,
-            'product_name': product.name,
-            'quantity': quantity,
-            'price': product.price
-        })
         session.modified = True
 
     except Exception as e:
